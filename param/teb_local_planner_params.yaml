@@ -8,11 +8,11 @@ TebLocalPlannerROS:
  # Enables automatic resizing of the trajectory during optimization
  teb_autosize: True
  # Desired temporal resolution of the trajectory (affects computing time)
- dt_ref: 0.4
+ dt_ref: 0.1
  # Hysteresis for automatic resizing depending on the current temporal resolution
- dt_hysteresis: 0.2
+ dt_hysteresis: 0.05
  # Maximum number of samples (poses) that can be optimized
- max_samples: 500
+ max_samples: 300
  # Overwrite orientation of local subgoals provided by global planner
  global_plan_overwrite_orientation: True
  # If true, allows the robot to move backwards
@@ -43,7 +43,7 @@ TebLocalPlannerROS:
  # Maximum forward acceleration
  acc_lim_x: 0.4
  # Maximum rotational acceleration
- acc_lim_theta: 0.8
+ acc_lim_theta: 0.2
  # Minimum turning radius (0 for differential drive robots)
  min_turning_radius: 0.0
 
@@ -100,9 +100,9 @@ TebLocalPlannerROS:
  # Optimization Parameters
  # --------------------
  # Number of solver iterations called in each outerloop
- no_inner_iterations: 8
+ no_inner_iterations: 10
  # Number of outer iterations for optimization
- no_outer_iterations: 6
+ no_outer_iterations: 8
  # Activate optimization
  optimization_activate: True
  # Print verbose optimization info
@@ -122,7 +122,7 @@ TebLocalPlannerROS:
  # Weight for minimum turning radius
  weight_kinematics_turning_radius: 1
  # Weight for optimizing path execution time
- weight_optimaltime: 1
+ weight_optimaltime: 5
  # Weight for shortest path (not recommended - use 0)
  weight_shortest_path: 0
  # Weight for keeping distance from obstacles
