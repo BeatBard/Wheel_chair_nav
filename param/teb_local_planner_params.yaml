@@ -33,15 +33,15 @@ TebLocalPlannerROS:
  # Robot Configuration Parameters
  # ---------------------------
  # Maximum forward velocity (meters/sec)
- max_vel_x: 0.8
+ max_vel_x: 1.5
  # Maximum backwards velocity (meters/sec)
  max_vel_x_backwards: 0.5
  # Maximum strafing velocity (should be 0 for non-holonomic robots)
  max_vel_y: 0.0
  # Maximum rotational velocity (rad/sec)
- max_vel_theta: 1
+ max_vel_theta: 1.2
  # Maximum forward acceleration
- acc_lim_x: 0.4
+ acc_lim_x: 0.8
  # Maximum rotational acceleration
  acc_lim_theta: 0.8
  # Minimum turning radius (0 for differential drive robots)
@@ -68,17 +68,17 @@ TebLocalPlannerROS:
  # Obstacle Parameters
  # -----------------
  # Minimum distance to obstacles
- min_obstacle_dist: 0.1
+ min_obstacle_dist: 0.2
  # Buffer zone around obstacles for inflation
- inflation_dist: 0.1
+ inflation_dist: 0.15
  # Additional buffer for dynamic obstacles
  dynamic_obstacle_inflation_dist: 0.1
  # Consider dynamic obstacles in planning
- include_dynamic_obstacles: True
+ include_dynamic_obstacles: False
  # Consider obstacles from costmap
  include_costmap_obstacles: True
  # Distance behind robot to still consider obstacles
- costmap_obstacles_behind_robot_dist: 1.5
+ costmap_obstacles_behind_robot_dist: 1
  # Number of poses affected by dynamic obstacles
  obstacle_poses_affected: 15
 
@@ -126,11 +126,11 @@ TebLocalPlannerROS:
  # Weight for shortest path (not recommended - use 0)
  weight_shortest_path: 0
  # Weight for keeping distance from obstacles
- weight_obstacle: 20
+ weight_obstacle: 8
  # Weight for inflation
  weight_inflation: 0.2
  # Weight for dynamic obstacles
- weight_dynamic_obstacle: 10
+ weight_dynamic_obstacle: 1
  # Weight for dynamic obstacle inflation
  weight_dynamic_obstacle_inflation: 0.2
  # Weight for following via-points

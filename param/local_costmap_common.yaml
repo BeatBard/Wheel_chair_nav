@@ -14,4 +14,4 @@ laser_scan_sensor:
   topic: /scan
   marking: true
   clearing: true
-transform_tolerance: 0.2
+transform_tolerance: 0.8

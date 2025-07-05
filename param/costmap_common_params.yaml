@@ -54,7 +54,7 @@ laser_scan_sensor:
 # Transform Configuration
 # --------------------
 # Maximum time to wait for transforms to be available
-transform_tolerance: 1.0
+transform_tolerance: 0.8
 
 # Additional Safety Parameters
 # -------------------------
