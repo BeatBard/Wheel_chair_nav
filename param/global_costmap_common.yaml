@@ -1,4 +1,9 @@
 transform_tolerance: 0.8
-robot_radius: 0.105
-inflation_radius: 1.0
+# robot_radius: 0.34
+inflation_radius: 0.15
 # no observation_sources line here
+footprint:
+  - [-0.35, -0.425]  # Back-right corner
+  - [-0.35,  0.425]  # Back-left corner
+  - [ 0.35,  0.425]  # Front-left corner
+  - [ 0.35, -0.425]  # Front-right corner
