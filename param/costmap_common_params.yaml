@@ -1,12 +1,12 @@
 # Common Costmap Parameters (Shared between Global and Local Costmaps)
 # --------------------------------------------------------------------
 
-# Sensor Range Parameters
+# Sensor Range Parameters - more restrictive to eliminate phantom obstacles
 # ---------------------
 # Maximum range at which to insert obstacles into the costmap
-obstacle_range: 4.0
+obstacle_range: 3.0
 # Maximum range at which to ray-trace out obstacles from the map
-raytrace_range: 4.5
+raytrace_range: 1.0                # Reduced from 3.5 to limit phantom clearing
 
 # Robot Footprint Definition
 # -----------------------
@@ -22,13 +22,13 @@ footprint:
   - [ 0.35,  0.425]  # Front-left corner
   - [ 0.35, -0.425]  # Front-right corner
 
-# Costmap Cell Properties
+# Costmap Cell Properties - less sensitive to phantom obstacles
 # ---------------------
 # Radius around obstacles where cost is incurred (in meters)
 inflation_radius: 0.15
 # Factor to scale the exponential decay of inflation costs
 # Lower values = higher cost near obstacles
-cost_scaling_factor: 5.0
+cost_scaling_factor: 3.0           # Reduced from 5.0 to make obstacles less "sticky"
 
 # Costmap Type Configuration
 # ------------------------
@@ -40,7 +40,7 @@ map_type: costmap
 # List of sensor sources to process
 observation_sources: laser_scan_sensor
 
-# Laser Scanner Configuration
+# Laser Scanner Configuration - very aggressive filtering
 # ------------------------
 laser_scan_sensor:
   sensor_frame: cloud_POS_000_DIST1  # Frame ID of the sensor
@@ -48,15 +48,20 @@ laser_scan_sensor:
   topic: /scan                       # ROS topic for sensor data
   marking: true                      # Whether to mark obstacles
   clearing: true                     # Whether to clear obstacles
-  min_obstacle_height: -0.1          # Minimum height for obstacles
+  min_obstacle_height: 0.05          # Minimum height for obstacles
   max_obstacle_height: 2.0           # Maximum height for obstacles
+  # Aggressive sensor filtering parameters to eliminate phantom obstacles
+  min_range: 0.20                    # Increased from 0.12 to ignore closer false readings
+  max_range: 2.5                     # Reduced from 3.0 to ignore distant false readings
+  expected_update_rate: 0.0          # No timeout for sensor updates
+  observation_persistence: 0.0       # Don't persist old observations
 
 # Transform Configuration
 # --------------------
 # Maximum time to wait for transforms to be available
-transform_tolerance: 0.8
+transform_tolerance: 0.5             # Reduced from 0.8 for better timing consistency
 
-# Additional Safety Parameters
+# Additional Safety Parameters - adjusted for less phantom obstacle sensitivity
 # -------------------------
 # Whether to track unknown space
 track_unknown_space: false

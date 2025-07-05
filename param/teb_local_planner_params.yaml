@@ -35,7 +35,7 @@ TebLocalPlannerROS:
  # Maximum forward velocity (meters/sec)
  max_vel_x: 1.5
  # Maximum backwards velocity (meters/sec)
- max_vel_x_backwards: 0.5
+ max_vel_x_backwards: 1.2
  # Maximum strafing velocity (should be 0 for non-holonomic robots)
  max_vel_y: 0.0
  # Maximum rotational velocity (rad/sec)
@@ -68,28 +68,28 @@ TebLocalPlannerROS:
  # Obstacle Parameters
  # -----------------
  # Minimum distance to obstacles
- min_obstacle_dist: 0.2
+ min_obstacle_dist: 0.15
  # Buffer zone around obstacles for inflation
- inflation_dist: 0.15
+ inflation_dist: 0.12
  # Additional buffer for dynamic obstacles
- dynamic_obstacle_inflation_dist: 0.1
+ dynamic_obstacle_inflation_dist: 0
  # Consider dynamic obstacles in planning
  include_dynamic_obstacles: False
  # Consider obstacles from costmap
  include_costmap_obstacles: True
  # Distance behind robot to still consider obstacles
- costmap_obstacles_behind_robot_dist: 1
+ costmap_obstacles_behind_robot_dist: 0.5
  # Number of poses affected by dynamic obstacles
- obstacle_poses_affected: 15
+ obstacle_poses_affected: 10
 
  # Obstacle Association Parameters
  # ---------------------------
  # Small safety margin for distances
- penalty_epsilon: 0.05
+ penalty_epsilon: 0.1
  # Force considering obstacles that are further away
- obstacle_association_force_inclusion_factor: 1.5
+ obstacle_association_force_inclusion_factor: 1.0
  # Cut-off factor for taking obstacles into account
- obstacle_association_cutoff_factor: 5.0
+ obstacle_association_cutoff_factor: 3.0
  # Plugin name for converting costmap cells to points
  costmap_converter_plugin: ""
  # Spin up a thread for costmap conversion
@@ -126,13 +126,13 @@ TebLocalPlannerROS:
  # Weight for shortest path (not recommended - use 0)
  weight_shortest_path: 0
  # Weight for keeping distance from obstacles
- weight_obstacle: 8
+ weight_obstacle: 5
  # Weight for inflation
- weight_inflation: 0.2
+ weight_inflation: 0.1
  # Weight for dynamic obstacles
- weight_dynamic_obstacle: 1
+ weight_dynamic_obstacle: 0
  # Weight for dynamic obstacle inflation
- weight_dynamic_obstacle_inflation: 0.2
+ weight_dynamic_obstacle_inflation: 0
  # Weight for following via-points
  weight_viapoint: 1
  # Factor to increase weights during optimization

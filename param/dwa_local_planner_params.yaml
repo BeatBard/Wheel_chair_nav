@@ -1,39 +1,39 @@
 DWAPlannerROS:
-  # Robot velocity limits - slightly reduced for smoother motion
-  max_vel_x: 0.20
-  min_vel_x: -0.15
+  # Robot velocity limits - significantly increased for fast navigation
+  max_vel_x: 1.5
+  min_vel_x: -0.5
   max_vel_y: 0.0
   min_vel_y: 0.0
-  max_vel_trans: 0.20
-  min_vel_trans: 0.05
-  max_vel_theta: 2.0
-  min_vel_theta: 0.5
+  max_vel_trans: 1.5
+  min_vel_trans: 0.2
+  max_vel_theta: 4.0
+  min_vel_theta: 1.0
 
-  # Accelerations - reduced for smoother motion
-  acc_lim_x: 1.5
+  # Accelerations - increased for very responsive motion
+  acc_lim_x: 4.0
   acc_lim_y: 0.0
-  acc_lim_theta: 2.0
+  acc_lim_theta: 4.5
 
   # Goal tolerances
   xy_goal_tolerance: 0.05
   yaw_goal_tolerance: 0.17
   latch_xy_goal_tolerance: false
 
-  # Simulation - increased for smoother trajectories
-  sim_time: 2.5
-  vx_samples: 30
+  # Simulation - optimized for high speeds
+  sim_time: 1.8
+  vx_samples: 40
   vy_samples: 0
-  vth_samples: 50
+  vth_samples: 60
   controller_frequency: 15.0
 
-  # Scoring - adjusted for smoother paths
-  path_distance_bias: 24.0
-  goal_distance_bias: 16.0
-  occdist_scale: 0.02
-  forward_point_distance: 0.325
-  stop_time_buffer: 0.2
-  scaling_speed: 0.25
-  max_scaling_factor: 0.2
+  # Scoring - heavily adjusted to ignore phantom obstacles
+  path_distance_bias: 35.0
+  goal_distance_bias: 25.0
+  occdist_scale: 0.1
+  forward_point_distance: 0.5
+  stop_time_buffer: 0.4
+  scaling_speed: 0.4
+  max_scaling_factor: 0.4
 
   # Oscillation prevention
   oscillation_reset_dist: 0.05
@@ -44,5 +44,8 @@ DWAPlannerROS:
   
   # Trajectory smoothing
   simple_attractor: false
-  escape_reset_dist: 0.1
-  escape_reset_theta: 0.1
+  escape_reset_dist: 0.2
+  escape_reset_theta: 0.2
+  
+  # Path pruning for better performance
+  prune_plan: true
