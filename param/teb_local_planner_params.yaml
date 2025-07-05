@@ -3,14 +3,14 @@ TebLocalPlannerROS:
  # Topic from which to read odometry information
  odom_topic: odom
     
- # Trajectory Generation Parameters
+ # Trajectory Generation Parameters - optimized for smooth motion
  # ------------------------------
  # Enables automatic resizing of the trajectory during optimization
  teb_autosize: True
- # Desired temporal resolution of the trajectory (affects computing time)
- dt_ref: 0.4
+ # Desired temporal resolution of the trajectory (reduced for smoother motion)
+ dt_ref: 0.2
  # Hysteresis for automatic resizing depending on the current temporal resolution
- dt_hysteresis: 0.2
+ dt_hysteresis: 0.1
  # Maximum number of samples (poses) that can be optimized
  max_samples: 500
  # Overwrite orientation of local subgoals provided by global planner
@@ -18,32 +18,32 @@ TebLocalPlannerROS:
  # If true, allows the robot to move backwards
  allow_init_with_backwards_motion: True
  # Maximum distance to look ahead on the global plan
- max_global_plan_lookahead_dist: 4.0
+ max_global_plan_lookahead_dist: 3.0
  # If positive: extract via-points from the global plan (disabled with -1)
- global_plan_viapoint_sep: -1
+ global_plan_viapoint_sep: 0.5
  # Distance threshold to prune global plan
  global_plan_prune_distance: 1
  # If true: calculate the actual arc length (more accurate but slower)
  exact_arc_length: False
  # Number of poses ahead to check path feasibility
- feasibility_check_no_poses: 3
+ feasibility_check_no_poses: 5
  # Publish planner feedback for visualization
  publish_feedback: True
     
- # Robot Configuration Parameters
+ # Robot Configuration Parameters - optimized for wheelchair
  # ---------------------------
- # Maximum forward velocity (meters/sec)
- max_vel_x: 1.5
+ # Maximum forward velocity (meters/sec) - reduced for smoother motion
+ max_vel_x: 0.8
  # Maximum backwards velocity (meters/sec)
- max_vel_x_backwards: 0.5
+ max_vel_x_backwards: 0.3
  # Maximum strafing velocity (should be 0 for non-holonomic robots)
  max_vel_y: 0.0
- # Maximum rotational velocity (rad/sec)
- max_vel_theta: 1.2
- # Maximum forward acceleration
- acc_lim_x: 0.8
- # Maximum rotational acceleration
- acc_lim_theta: 0.8
+ # Maximum rotational velocity (rad/sec) - reduced for smoother turning
+ max_vel_theta: 0.8
+ # Maximum forward acceleration - reduced for smoother motion
+ acc_lim_x: 0.5
+ # Maximum rotational acceleration - reduced for smoother motion
+ acc_lim_theta: 0.6
  # Minimum turning radius (0 for differential drive robots)
  min_turning_radius: 0.0
 
@@ -54,12 +54,12 @@ TebLocalPlannerROS:
    # Vertices of the robot footprint (counterclockwise) [x,y] pairs
    vertices: [[-0.35, -0.425], [-0.35, 0.425], [0.35, 0.425], [0.35, -0.425]]
 
- # Goal Tolerance Parameters
+ # Goal Tolerance Parameters - tightened for precision
  # ----------------------
  # Allowed final euclidean distance to the goal position
- xy_goal_tolerance: 0.2
+ xy_goal_tolerance: 0.1
  # Allowed final orientation error to the goal
- yaw_goal_tolerance: 0.3
+ yaw_goal_tolerance: 0.15
  # Allow free goal velocity in the goal state
  free_goal_vel: False
  # Requires the entire path until the goal to be free of obstacles
@@ -97,12 +97,12 @@ TebLocalPlannerROS:
  # Rate at which to update the costmap conversion
  costmap_converter_rate: 5
 
- # Optimization Parameters
+ # Optimization Parameters - tuned for smooth trajectories
  # --------------------
  # Number of solver iterations called in each outerloop
- no_inner_iterations: 8
+ no_inner_iterations: 10
  # Number of outer iterations for optimization
- no_outer_iterations: 6
+ no_outer_iterations: 8
  # Activate optimization
  optimization_activate: True
  # Print verbose optimization info
@@ -118,23 +118,23 @@ TebLocalPlannerROS:
  # Weight for satisfying non-holonomic constraints
  weight_kinematics_nh: 1000
  # Prefer forward motions
- weight_kinematics_forward_drive: 1
+ weight_kinematics_forward_drive: 10
  # Weight for minimum turning radius
  weight_kinematics_turning_radius: 1
  # Weight for optimizing path execution time
- weight_optimaltime: 1
+ weight_optimaltime: 1.5
  # Weight for shortest path (not recommended - use 0)
  weight_shortest_path: 0
  # Weight for keeping distance from obstacles
- weight_obstacle: 8
+ weight_obstacle: 10
  # Weight for inflation
- weight_inflation: 0.2
+ weight_inflation: 0.3
  # Weight for dynamic obstacles
  weight_dynamic_obstacle: 1
  # Weight for dynamic obstacle inflation
  weight_dynamic_obstacle_inflation: 0.2
  # Weight for following via-points
- weight_viapoint: 1
+ weight_viapoint: 2
  # Factor to increase weights during optimization
  weight_adapt_factor: 2
 

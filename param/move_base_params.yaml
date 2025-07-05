@@ -1,6 +1,6 @@
-# High‑level navigation guarantees & recovery
-controller_frequency:    10.0      # Reduced to help with timing issues
-planner_frequency:       2.0       # Reduced for more stable planning
+# High‑level navigation guarantees & recovery - optimized for smooth motion
+controller_frequency:    20.0      # Increased for smoother control
+planner_frequency:       5.0       # Increased for more responsive planning
 planner_patience:        3.0       # More responsive to planning failures
 controller_patience:     5.0       # More responsive to control failures
 conservative_reset_dist: 1.0       # Smaller reset distance for indoor spaces
@@ -8,7 +8,7 @@ oscillation_timeout:     5.0       # Detect oscillations sooner
 oscillation_distance:    0.1       # More sensitive oscillation detection
 shutdown_costmaps:       false
 
-transform_tolerance: 0.1
+transform_tolerance: 0.05           # Tighter tolerance for smooth navigation
 
 # Recovery behavior configuration
 recovery_behavior_enabled: true
