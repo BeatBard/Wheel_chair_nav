@@ -1,29 +1,29 @@
 # High‑level navigation guarantees & recovery - optimized for smooth motion
-controller_frequency:    20.0      # Increased for smoother control
-planner_frequency:       5.0       # Increased for more responsive planning
-planner_patience:        3.0       # More responsive to planning failures
-controller_patience:     5.0       # More responsive to control failures
-conservative_reset_dist: 1.0       # Smaller reset distance for indoor spaces
-oscillation_timeout:     5.0       # Detect oscillations sooner
-oscillation_distance:    0.1       # More sensitive oscillation detection
-shutdown_costmaps:       false
+controller_frequency: 20.0 # Increased for smoother control
+planner_frequency: 5.0 # Increased for more responsive planning
+planner_patience: 3.0 # More responsive to planning failures
+controller_patience: 5.0 # More responsive to control failures
+conservative_reset_dist: 1.0 # Smaller reset distance for indoor spaces
+oscillation_timeout: 5.0 # Detect oscillations sooner
+oscillation_distance: 0.1 # More sensitive oscillation detection
+shutdown_costmaps: false
 
-transform_tolerance: 0.05           # Tighter tolerance for smooth navigation
+transform_tolerance: 0.05 # Tighter tolerance for smooth navigation
 
 # Recovery behavior configuration
 recovery_behavior_enabled: true
 clearing_rotation_allowed: true
 recovery_behaviors:
-  - name: 'conservative_reset'
-    type: 'clear_costmap_recovery/ClearCostmapRecovery'
-  - name: 'rotate_recovery'
-    type: 'rotate_recovery/RotateRecovery'
-  - name: 'aggressive_reset'
-    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+  - name: "conservative_reset"
+    type: "clear_costmap_recovery/ClearCostmapRecovery"
+  - name: "rotate_recovery"
+    type: "rotate_recovery/RotateRecovery"
+  - name: "aggressive_reset"
+    type: "clear_costmap_recovery/ClearCostmapRecovery"
 
 # Make recovery less aggressive
 conservative_reset:
   reset_distance: 1.0
-  
+
 aggressive_reset:
   reset_distance: 3.0
